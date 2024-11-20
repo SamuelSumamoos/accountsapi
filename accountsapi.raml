@@ -1,0 +1,44 @@
+#%RAML 1.0
+title: accountsapi
+version: 1.0.0
+baseUri: http://localhost:8081
+
+/accounts:
+  get:
+    description: Retrieves a list of all accounts for Example Company
+    responses:
+      200:
+        description: A list of accounts
+        body:
+          application/json:
+            type: array
+            items:
+              type: object
+              properties:
+                company_name:
+                  type: string
+                phone_number:
+                  type: string
+                address:
+                  type: object
+                  properties:
+                    street:
+                      type: string
+                    city:
+                      type: string
+                    state:
+                      type: string
+                    postal_code:
+                      type: string
+      500:
+        description: Internal server error
+        body:
+          application/json:
+            type: object
+            properties:
+              error:
+                type: string
+                description: A message describing the error
+              timestamp:
+                type: datetime
+                description: The time at which the error occurred
